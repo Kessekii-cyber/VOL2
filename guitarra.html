@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso de Guitarra - MUSIC FOR THE BEST</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --text-light: #ecf0f1;
+            --text-dark: #2c3e50;
+            --gradient-bg: linear-gradient(135deg, #2c3e50, #3498db);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: #f5f6fa;
+        }
+
+        .header {
+            background: var(--gradient-bg);
+            color: var(--text-light);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .nav-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo i {
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .guitar-hero {
+            margin-top: 60px;
+            height: 60vh;
+            background: url('/api/placeholder/1920/1080') center/cover;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            text-align: center;
+        }
+
+        .guitar-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.6);
+        }
+
+        .guitar-hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .guitar-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .guitar-hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.3s;
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+
+        .course-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .level-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .level-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .level-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .level-content {
+            padding: 2rem;
+        }
+
+        .level-title {
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .level-description {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .level-details {
+            margin-bottom: 1.5rem;
+        }
+
+        .level-details li {
+            margin-bottom: 0.5rem;
+            list-style: none;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .level-details li::before {
+            content: '✓';
+            color: var(--accent-color);
+            position: absolute;
+            left: 0;
+        }
+
+        .price-tag {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--accent-color);
+            color: var(--text-light);
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            width: 100%;
+            text-align: center;
+        }
+
+        .cta-button:hover {
+            background-color: #c0392b;
+        }
+
+        .features-section {
+            background: var(--gradient-bg);
+            color: var(--text-light);
+            padding: 4rem 2rem;
+        }
+
+        .features-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.1);
+            transition: transform 0.3s;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+            margin-bottom: 3rem;
+        }
+
+        footer {
+            background: var(--primary-color);
+            color: var(--text-light);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-links a {
+            color: var(--text-light);
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .guitar-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .guitar-hero p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav-container">
+            <div class="nav-top">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-music"></i>
+                    MUSIC FOR THE BEST
+                </a>
+                <div class="nav-links">
+                    <a href="paginaprincipal.html">Inicio</a>
+                    <a href="index.html#instrumentos">Instrumentos</a>
+                    <a href="index.html#sobre-nosotros">Sobre Nosotros</a>
+                    <a href="index.html#contacto">Contacto</a>
+                    <a href="login.html">Iniciar Sesión</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="guitar-hero">
+        <div class="guitar-hero-content">
+            <h1>Aprende a Tocar la Guitarra</h1>
+            <p>Desde principiante hasta experto, descubre el camino para dominar este increíble instrumento</p>
+        </div>
+    </section>
+
+    <section class="course-content">
+        <h2 class="section-title">Nuestros Programas</h2>
+        <p class="section-subtitle">Elige el nivel que mejor se adapte a tus necesidades y comienza tu viaje musical</p>
+        
+        <div class="course-grid">
+            <div class="level-card">
+                <img src="/api/placeholder/400/200" alt="Nivel Principiante">
+                <div class="level-content">
+                    <h3 class="level-title">Nivel Principiante</h3>
+                    <p class="level-description">Perfecto para quienes están comenzando su viaje musical.</p>
+                    <ul class="level-details">
+                        <li>Fundamentos básicos de la guitarra</li>
+                        <li>Acordes principales</li>
+                        <li>Técnicas de rasgueo básicas</li>
+                        <li>Teoría musical básica</li>
+                        <li>4 clases mensuales</li>
+                    </ul>
+                    <div class="price-tag">$199/mes</div>
+                    <a href="#" class="cta-button">Comenzar Ahora</a>
+                </div>
+            </div>
+
+            <div class="level-card">
+                <img src="/api/placeholder/400/200" alt="Nivel Intermedio">
+                <div class="level-content">
+                    <h3 class="level-title">Nivel Intermedio</h3>
+                    <p class="level-description">Para estudiantes con conocimientos básicos que buscan mejorar.</p>
+                    <ul class="level-details">
+                        <li>Técnicas avanzadas de rasgueo</li>
+                        <li>Escalas y solos</li>
+                        <li>Teoría musical intermedia</li>
+                        <li>Improvisación básica</li>
+                        <li>8 clases mensuales</li>
+                    </ul>
+                    <div class="price-tag">$299/mes</div>
+                    <a href="#" class="cta-button">Comenzar Ahora</a>
+                </div>
+            </div>
+
+            <div class="level-card">
+                <img src="/api/placeholder/400/200" alt="Nivel Avanzado">
+                <div class="level-content">
+                    <h3 class="level-title">Nivel Avanzado</h3>
+                    <p class="level-description">Para guitarristas experimentados que buscan la excelencia.</p>
+                    <ul class="level-details">
+                        <li>Técnicas de fingerpicking avanzadas</li>
+                        <li>Composición musical</li>
+                        <li>Armonía avanzada</li>
+                        <li>Improvisación avanzada</li>
+                        <li>12 clases mensuales</li>
+                    </ul>
+                    <div class="price-tag">$399/mes</div>
+                    <a href="#" class="cta-button">Comenzar Ahora</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features-section">
+        <h2 class="section-title">¿Por qué elegir nuestro programa?</h2>
+        <div class="features-grid">
+            <div class="feature-item">
+                <i class="fas fa-user-graduate feature-icon"></i>
+                <h3>Profesores Expertos</h3>
+                <p>Instructores certificados con años de experiencia</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-video feature-icon"></i>
+                <h3>Clases Online y Presenciales</h3>
+                <p>Flexibilidad para adaptarnos a tu horario</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-certificate feature-icon"></i>
+                <h3>Certificación</h3>
+                <p>Obtén un certificado al completar cada nivel</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-users feature-icon"></i>
+                <h3>Comunidad Activa</h3>
+                <p>Únete a nuestra comunidad de músicos</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+        <p>&copy; 2024 MUSIC FOR THE BEST. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>

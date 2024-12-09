@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batería - MUSIC FOR THE BEST</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --text-light: #ecf0f1;
+            --text-dark: #2c3e50;
+            --gradient-bg: linear-gradient(135deg, #2c3e50, #3498db);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: #f5f6fa;
+        }
+
+        .header {
+            background: var(--gradient-bg);
+            color: var(--text-light);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .nav-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo i {
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .drum-hero {
+            margin-top: 80px;
+            padding: 4rem 2rem;
+            background: url('/api/placeholder/1920/600') center/cover;
+            position: relative;
+            color: var(--text-light);
+            text-align: center;
+        }
+
+        .drum-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.6);
+        }
+
+        .drum-hero-content {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .drum-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin: 3rem 0;
+            color: var(--text-dark);
+            font-size: 2.5rem;
+        }
+
+        .lessons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .lesson-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .lesson-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .lesson-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .lesson-content {
+            padding: 1.5rem;
+        }
+
+        .lesson-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .lesson-description {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .instructor-section {
+            background: white;
+            padding: 4rem 2rem;
+        }
+
+        .instructor-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .instructor-card {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .instructor-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+            object-fit: cover;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--accent-color);
+            color: var(--text-light);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+        }
+
+        footer {
+            background: var(--primary-color);
+            color: var(--text-light);
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-links a {
+            color: var(--text-light);
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .drum-hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav-container">
+            <div class="nav-top">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-music"></i>
+                    MUSIC FOR THE BEST
+                </a>
+                <div class="nav-links">
+                    <a href="paginaprincipal.html">Inicio</a>
+                    <a href="#instrumentos">Instrumentos</a>
+                    <a href="#sobre-nosotros">Sobre Nosotros</a>
+                    <a href="#contacto">Contacto</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="drum-hero">
+        <div class="drum-hero-content">
+            <h1>Aprende a Tocar la Batería</h1>
+            <p>Desde ritmos básicos hasta técnicas avanzadas de percusión</p>
+            <a href="#courses" class="cta-button">Ver Cursos</a>
+        </div>
+    </section>
+
+    <section class="lessons-section" id="courses">
+        <h2 class="section-title">Nuestros Cursos de Batería</h2>
+        <div class="lessons-grid">
+            <div class="lesson-card">
+                <img src="/api/placeholder/400/200" alt="Curso Básico de Batería" class="lesson-image">
+                <div class="lesson-content">
+                    <h3 class="lesson-title">Fundamentos de Batería</h3>
+                    <p class="lesson-description">Aprende las bases: postura, agarre de baquetas y ritmos básicos.</p>
+                    <a href="#" class="cta-button">Comenzar Curso</a>
+                </div>
+            </div>
+            <div class="lesson-card">
+                <img src="/api/placeholder/400/200" alt="Curso Intermedio de Batería" class="lesson-image">
+                <div class="lesson-content">
+                    <h3 class="lesson-title">Ritmos Intermedios</h3>
+                    <p class="lesson-description">Explora diferentes géneros musicales y técnicas de coordinación.</p>
+                    <a href="#" class="cta-button">Comenzar Curso</a>
+                </div>
+            </div>
+            <div class="lesson-card">
+                <img src="/api/placeholder/400/200" alt="Curso Avanzado de Batería" class="lesson-image">
+                <div class="lesson-content">
+                    <h3 class="lesson-title">Técnicas Avanzadas</h3>
+                    <p class="lesson-description">Domina fills complejos, polirritmos y técnicas de pedal doble.</p>
+                    <a href="#" class="cta-button">Comenzar Curso</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="instructor-section">
+        <h2 class="section-title">Nuestros Instructores</h2>
+        <div class="instructor-grid">
+            <div class="instructor-card">
+                <img src="/api/placeholder/150/150" alt="Instructor Carlos" class="instructor-image">
+                <h3>Carlos Rodríguez</h3>
+                <p>15 años de experiencia en batería</p>
+                <p>Especialista en rock y jazz</p>
+            </div>
+            <div class="instructor-card">
+                <img src="/api/placeholder/150/150" alt="Instructora Ana" class="instructor-image">
+                <h3>Ana Martínez</h3>
+                <p>12 años de experiencia en percusión</p>
+                <p>Especialista en música latina</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+        <p>&copy; 2024 MUSIC FOR THE BEST. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>

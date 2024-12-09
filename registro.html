@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - MUSIC FOR THE BEST</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --text-light: #ecf0f1;
+            --text-dark: #2c3e50;
+            --gradient-bg: linear-gradient(135deg, #2c3e50, #3498db);
+            --error-color: #e74c3c;
+            --success-color: #2ecc71;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: var(--gradient-bg);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            padding: 1rem 2rem;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo i {
+            color: var(--accent-color);
+        }
+
+        .register-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .register-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 500px;
+            animation: slideUp 0.5s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .register-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .register-header h1 {
+            color: var(--text-dark);
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .register-header p {
+            color: #666;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-group i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            border: 2px solid #ddd;
+            border-radius: 50px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        .form-input::placeholder {
+            color: #999;
+        }
+
+        .password-requirements {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 0.5rem;
+            padding-left: 1rem;
+        }
+
+        .password-requirements ul {
+            list-style: none;
+            margin-top: 0.25rem;
+        }
+
+        .password-requirements li {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .password-requirements li i {
+            font-size: 0.8rem;
+            position: static;
+            transform: none;
+        }
+
+        .register-button {
+            width: 100%;
+            padding: 1rem;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            margin-top: 1rem;
+        }
+
+        .register-button:hover {
+            background: #c0392b;
+            transform: translateY(-2px);
+        }
+
+        .terms {
+            margin: 1.5rem 0;
+            font-size: 0.9rem;
+            color: #666;
+            text-align: center;
+        }
+
+        .terms a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .register-footer {
+            text-align: center;
+            margin-top: 2rem;
+            color: #666;
+        }
+
+        .login-link {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .login-link:hover {
+            color: #c0392b;
+        }
+
+        .instrument-select {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            border: 2px solid #ddd;
+            border-radius: 50px;
+            font-size: 1rem;
+            appearance: none;
+            background: #fff;
+            cursor: pointer;
+            transition: border-color 0.3s;
+        }
+
+        .instrument-select:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        @media (max-width: 600px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .register-card {
+                padding: 1.5rem;
+            }
+        }
+
+        .error-message {
+            color: var(--error-color);
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            padding-left: 1rem;
+            display: none;
+        }
+
+        .success-message {
+            color: var(--success-color);
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            padding-left: 1rem;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="index.html" class="logo">
+            <i class="fas fa-music"></i>
+            MUSIC FOR THE BEST
+        </a>
+    </header>
+
+    <main class="register-container">
+        <div class="register-card">
+            <div class="register-header">
+                <h1>Crear Cuenta</h1>
+                <p>¡Únete a nuestra comunidad musical!</p>
+            </div>
+
+            <form id="registerForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <i class="fas fa-user"></i>
+                        <input type="text" class="form-input" placeholder="Nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <i class="fas fa-user"></i>
+                        <input type="text" class="form-input" placeholder="Apellido" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" class="form-input" placeholder="Correo electrónico" required>
+                </div>
+
+                <div class="form-group">
+                    <i class="fas fa-phone"></i>
+                    <input type="tel" class="form-input" placeholder="Teléfono" required>
+                </div>
+
+                <div class="form-group">
+                    <i class="fas fa-guitar"></i>
+                    <select class="instrument-select" required>
+                        <option value="">Selecciona tu instrumento principal</option>
+                        <option value="guitar">Guitarra</option>
+                        <option value="piano">Piano</option>
+                        <option value="drums">Batería</option>
+                        <option value="bass">Bajo</option>
+                        <option value="violin">Violín</option>
+                        <option value="saxophone">Saxofón</option>
+                        <option value="other">Otro</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" class="form-input" placeholder="Contraseña" required>
+                    <div class="password-requirements">
+                        <p>La contraseña debe contener:</p>
+                        <ul>
+                            <li><i class="fas fa-check"></i>Mínimo 8 caracteres</li>
+                            <li><i class="fas fa-check"></i>Al menos una letra mayúscula</li>
+                            <li><i class="fas fa-check"></i>Al menos un número</li>
+                            <li><i class="fas fa-check"></i>Al menos un carácter especial</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" class="form-input" placeholder="Confirmar contraseña" required>
+                </div>
+
+                <div class="terms">
+                    <label>
+                        <input type="checkbox" required>
+                        Acepto los <a href="#">Términos y Condiciones</a> y la <a href="#">Política de Privacidad</a>
+                    </label>
+                </div>
+
+                <button type="submit" class="register-button">Crear Cuenta</button>
+
+                <div class="error-message">
+                    Error en el registro. Por favor, verifica los datos ingresados.
+                </div>
+
+                <div class="success-message">
+                    ¡Registro exitoso! Redirigiendo...
+                </div>
+            </form>
+
+            <div class="register-footer">
+                <p>¿Ya tienes una cuenta? <a href="login.html" class="login-link">Inicia sesión</a></p>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
